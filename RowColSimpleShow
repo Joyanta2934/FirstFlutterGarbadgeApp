@@ -1,0 +1,78 @@
+import 'package:flutter/material.dart';
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
+      darkTheme: ThemeData(primarySwatch: Colors.red),
+      color: Colors.blue,
+      debugShowCheckedModeBanner: false,
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key,});
+  //String msg;
+
+  mySnackBar(msg, context) {
+    return ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(msg)),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+
+
+    return Scaffold(
+      appBar: AppBar(
+
+        title: Text("Helloo Guyzz"),
+        //centerTitle: true,
+        backgroundColor: Colors.red,
+        elevation: 40,
+        toolbarOpacity: .9,
+        toolbarHeight: 60,
+
+        actions: [
+          IconButton(onPressed: () {
+            mySnackBar("Comments", context);}, icon: Icon(Icons.comment)),
+        ],
+
+      ),
+      body: Center(child: Column(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text("Miss Youu",style: TextStyle(fontSize: 20,color: Colors.green),),
+              const Text("Miss Youu"),
+              const Text("Miss Youu"),
+            ],
+          ), Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text("Miss Youu",style: TextStyle(fontSize: 20,color: Colors.green),),
+              const Text("Miss Youu"),
+              const Text("Miss Youu"),
+            ],
+          ), Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              const Text("Miss Youu",style: TextStyle(fontSize: 20,color: Colors.green),),
+              const Text("Miss Youu"),
+              const Text("Miss Youu"),
+            ],
+          ),
+        ],
+      )),
+    );
+  }
+}

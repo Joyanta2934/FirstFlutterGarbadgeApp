@@ -1,3 +1,6 @@
+//In the BIN folder, I had created a Fragment folder, and into that folder, I had created the fragments and imported on the main file using library. ctrl+P/ctrl+Entr
+
+
 import 'package:flutter/material.dart';
 import 'package:my_first_project/Fragments/ContactFragment.dart' show ContactFragment;
 import 'Fragments/EmailFragment.dart';

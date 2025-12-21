@@ -1,0 +1,55 @@
+import 'package:flutter/material.dart';
+import 'package:my_first_project/Fragments/ContactFragment.dart' show ContactFragment;
+import 'Fragments/EmailFragment.dart';
+import 'Fragments/HomeFragment.dart';
+import 'Fragments/SearchFragment.dart';
+
+
+void main(){
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget{
+  const MyApp({super.key});
+  @override
+  Widget build(BuildContext context){
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget{
+  const MyHomePage({super.key});
+  @override
+  Widget build(BuildContext context){
+    return DefaultTabController(
+        length: 4,   //Numbers of Tabs I want to create
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text("My App"),
+            bottom: TabBar(
+              isScrollable: true,
+              tabs: [
+                Tab(icon: Icon(Icons.home), text: "Home",),
+                Tab(icon: Icon(Icons.search),text: "Search",),
+                Tab(icon: Icon(Icons.email),text: "Email",),
+                Tab(icon: Icon(Icons.contact_mail),text: "Contact",),
+              ],
+            ),
+          ),
+
+          body: TabBarView(   //Based on the serial of the Appbar TabBar, The childrens or pages gets allocated.
+            children: [
+              HomeFragment(),
+              SearchFragment(),
+              EmailFragment(),
+              ContactFragment(),
+            ],
+          ),
+        )
+    );
+  }
+}

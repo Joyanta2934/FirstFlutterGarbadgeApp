@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Homepage(),
+    );
+  }
+}
+
+class Homepage extends StatefulWidget {
+  const Homepage({super.key});
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+
+class _HomepageState extends State<Homepage> {
+
+  // 🔹 Body background colors
+  final List<Color> bodyColors = [
+    Colors.greenAccent,
+    Colors.blueAccent,
+    Colors.orangeAccent,
+    Colors.purpleAccent,
+    Colors.redAccent,
+  ];
+
+  // 🔹 AppBar background colors
+  final List<Color> appBarColors = [
+    Colors.green,
+    Colors.blue,
+    Colors.orange,
+    Colors.purple,
+    Colors.red,
+  ];
+
+  int bodyColorIndex = 0;
+  int appBarColorIndex = 0;
+
+  void changeBodyColor() {
+    setState(() {
+      bodyColorIndex = (bodyColorIndex + 1) % bodyColors.length;
+    });
+  }
+
+  void changeAppBarColor() {
+    setState(() {
+      appBarColorIndex = (appBarColorIndex + 1) % appBarColors.length;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text("HOME"),
+        backgroundColor: appBarColors[appBarColorIndex], // 👈 dynamic
+      ),
+
+      body: Container(
+        color: bodyColors[bodyColorIndex], // 👈 dynamic
+        child: Center(
+          child: InkWell(
+            borderRadius: BorderRadius.circular(30),
+
+            // 🔹 Normal tap
+            onTap: changeBodyColor,
+
+            // 🔹 Long press
+            onLongPress: changeAppBarColor,
+
+            splashColor: Colors.grey.withOpacity(0.3),
+            highlightColor: Colors.grey.withOpacity(0.2),
+
+            child: Card(
+              color: const Color.fromRGBO(244, 244, 244, 1),
+              shadowColor: const Color.fromRGBO(244, 244, 244, 1),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              elevation: 20,
+              child: const SizedBox(
+                height: 200,
+                width: 200,
+                child: Center(
+                  child: Text(
+                    "This is Card\n\nTap → Body Color\nLong Press → AppBar Color",
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
